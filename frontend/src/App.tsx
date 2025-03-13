@@ -1,14 +1,16 @@
-import Aurora from "./components/Aurora"
-git rm -r --cached node_modules
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import SignUp from "./pages/Signup";
+
 const App = () => {
   return (
-    <div className="w-full bg-zinc-900 h-screen flex items-center justify-center">
-      <Aurora 
-      //  colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-      //  blend={0.5}
-      //  amplitude={1.0}
-      //  speed={0.5}
-      />
+    <div className="h-screen flex items-center justify-center bg-zinc-950">
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
     </div>
   )
 }
