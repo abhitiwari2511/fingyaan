@@ -47,7 +47,7 @@ const Auth = ({ mode }: AuthProps) => {
   };
 
   return (
-    <Card className="relative w-[24vw] border-zinc-800 bg-transparent text-white overflow-hidden">
+    <Card className="absolute w-[24vw] border-zinc-800 bg-zinc-950 text-white overflow-hidden">
       <CardHeader>
         <CardTitle>{isSignup ? "SignUp" : "Login"}</CardTitle>
         <CardDescription className="mt-2">
