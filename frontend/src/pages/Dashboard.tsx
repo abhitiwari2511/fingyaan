@@ -18,7 +18,7 @@ const Dashboard = () => {
     },
     {
       imgUrl: "https://media.istockphoto.com/id/876774666/photo/businessman-counting-money-indian-rupee-currency-in-the-envelope-just-given-by-his-partner.jpg?s=612x612&w=0&k=20&c=HubzypUWEfF9ErDKfhTeO9bjKMwojx-jfLZBse6F7tc=",
-      title: "Government Schemes",
+      title: "Govt. Schemes",
       description: "Explore financial schemes offered by the government to secure your financial future.",
       btnValue: "Govt. Schemes"
     },

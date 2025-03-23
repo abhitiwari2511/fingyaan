@@ -26,7 +26,7 @@ const Icons = {
 
 const DATA = {
   navbar: [
-    { href: "#", icon: HomeIcon, label: "Home" },
+    { href: "/dashboard", icon: HomeIcon, label: "Home" },
     { href: "#", icon: PencilIcon, label: "Blog" },
   ],
   language: {
