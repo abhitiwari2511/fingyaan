@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BorderBeam } from "./magicui/border-beam";
 import { Lens } from "./magicui/lens";
 import { Button } from "./ui/button";
@@ -12,13 +12,14 @@ import {
 } from "./ui/card";
 
 export interface FeatCardProps {
-    title: string
-    description: string
-    imgUrl: string
-    btnValue: string
+    title: string;
+    description: string;
+    imgUrl?: string | null;
+    btnValue: string;
+    btnLink: string;
 }
 
-export function FeatCard({title, description, imgUrl, btnValue}: FeatCardProps) {
+export function FeatCard({title, description, imgUrl, btnValue, btnLink}: FeatCardProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -27,24 +28,27 @@ export function FeatCard({title, description, imgUrl, btnValue}: FeatCardProps) 
     {btnValue === "Investment Advice" && navigate("/investment-advice")}
     {btnValue === "Govt. Schemes" && navigate("/govt-schemes")}
     {btnValue === "Learning Resources" && navigate("/learning-resources")}
+    // {btnValue === "Learn more" && navigate({btnLink})}
   }
 
   return (
       <Card className="bg-transparent relative w-full h-full flex justify-evenly border-zinc-800">
-        <CardHeader>
-          <Lens
-          zoomFactor={2}
-          lensSize={100}
-          ariaLabel="Image zoom lens"
-          >
-            <img
+        {imgUrl && (
+          <CardHeader>
+            <Lens
+              zoomFactor={2}
+              lensSize={100}
+              ariaLabel="Image zoom lens"
+            >
+              <img
                 src={imgUrl}
                 alt="image placeholder"
                 width={220}
                 className="rounded-lg object-fill"
-            />
-          </Lens>
-        </CardHeader>
+              />
+            </Lens>
+          </CardHeader>
+        )}
         <CardContent>
           <CardTitle className="text-2xl text-white">{title}</CardTitle>
           <CardDescription className="text-sm mt-2">
@@ -52,9 +56,11 @@ export function FeatCard({title, description, imgUrl, btnValue}: FeatCardProps) 
           </CardDescription>
         </CardContent>
         <CardFooter>
-          <Button onClick={handleClick} className="cursor-pointer" variant="secondary">
-            {btnValue}
-          </Button>
+          <Link to={btnLink}>
+            <Button onClick={handleClick} className="cursor-pointer" variant="secondary">
+              {btnValue}
+            </Button>
+          </Link>
         </CardFooter>
         <BorderBeam duration={8} size={900} />
       </Card>

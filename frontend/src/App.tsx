@@ -5,15 +5,21 @@ import SignUp from "./pages/Signup";
 import Home from "./pages/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Schemes from "./pages/Schemes";
+import Learning from "./pages/Learning";
+import Advice from "./pages/Advice";
+import Tracker from "./pages/Tracker";
 
 const App = () => {
   return (
-    <div className="mx-auto overflow-hidden flex justify-center w-full h-screen bg-zinc-950">
+    <div className="mx-auto flex justify-center w-full h-screen bg-zinc-950">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/govt-schemes" element={<Schemes />} />
+        <Route path="/learning-resources" element={<Learning />} />
+        <Route path="/investment-advice" element={<Advice />} />
+        <Route path="/expense-tracker" element={<Tracker />} />
         {/* <Route element={<ProtectedRoute />}> */}
           <Route path="/dashboard" element={<Dashboard />} />
         {/* </Route> */}
