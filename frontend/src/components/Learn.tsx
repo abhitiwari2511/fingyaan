@@ -48,9 +48,10 @@ const Learn = () => {
         })}
       </div>
     </div>
-    <div className='edu-divs mx-10 bg-cyan-400'>
+    
+    <div className='edu-divs mx-10 mb-12'>
       <h1 className="text-6xl font-bold text-center mb-8 p-5 text-white">Videos</h1>
-      <div className="flex">
+      <div className="grid grid-cols-2 gap-10">
         {videos.map(({title, description, link, btnText}, index) => {
           return <FeatCard key={index} title={title} description={description} imgUrl={null} btnValue={btnText} btnLink={link} />
         })}

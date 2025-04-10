@@ -11,21 +11,29 @@ import Tracker from "./pages/Tracker";
 
 const App = () => {
   return (
-    <div className="mx-auto flex justify-center w-full h-screen bg-zinc-950">
+    <div className="mx-auto flex justify-center w-full h-full bg-zinc-950">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/govt-schemes" element={<Schemes />} />
-        <Route path="/learning-resources" element={<Learning />} />
-        <Route path="/investment-advice" element={<Advice />} />
-        <Route path="/expense-tracker" element={<Tracker />} />
-        {/* <Route element={<ProtectedRoute />}> */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/govt-schemes" element={<Schemes />} />
+        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/learning-resources" element={<Learning />} />
+        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/investment-advice" element={<Advice />} />
+        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/expense-tracker" element={<Tracker />} />
+        </Route>
+        <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
-        {/* </Route> */}
+        </Route>
       </Routes>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

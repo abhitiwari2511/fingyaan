@@ -15,7 +15,7 @@ export interface FeatCardProps {
     title: string;
     description: string;
     imgUrl?: string | null;
-    btnValue: string;
+    btnValue?: string;
     btnLink: string;
 }
 
@@ -28,7 +28,6 @@ export function FeatCard({title, description, imgUrl, btnValue, btnLink}: FeatCa
     {btnValue === "Investment Advice" && navigate("/investment-advice")}
     {btnValue === "Govt. Schemes" && navigate("/govt-schemes")}
     {btnValue === "Learning Resources" && navigate("/learning-resources")}
-    // {btnValue === "Learn more" && navigate({btnLink})}
   }
 
   return (
@@ -55,13 +54,15 @@ export function FeatCard({title, description, imgUrl, btnValue, btnLink}: FeatCa
             {description}
           </CardDescription>
         </CardContent>
-        <CardFooter>
-          <Link to={btnLink}>
-            <Button onClick={handleClick} className="cursor-pointer" variant="secondary">
-              {btnValue}
-            </Button>
-          </Link>
-        </CardFooter>
+        {btnValue && (
+          <CardFooter>
+            <Link to={btnLink}>
+              <Button onClick={handleClick} className="cursor-pointer" variant="secondary">
+                {btnValue}
+              </Button>
+            </Link>
+          </CardFooter>
+        )}
         <BorderBeam duration={8} size={900} />
       </Card>
   );

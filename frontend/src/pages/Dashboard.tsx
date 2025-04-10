@@ -34,7 +34,7 @@ const Dashboard = () => {
     }
   ]
   return (
-    <div className="overflow-hidden mx-auto bg-zinc-950">
+    <div className="overflow-hidden h-screen mx-auto bg-zinc-950">
       <div className="flex justify-center">
         <ParticlesDemo />
         <Navbar />

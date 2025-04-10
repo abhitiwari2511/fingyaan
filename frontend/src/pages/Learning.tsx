@@ -4,7 +4,7 @@ import ParticlesDemo from '@/components/ParticleEffect'
 
 const Learning = () => {
   return (
-    <div className="mx-auto h-[150%] overflow-hidden">
+    <div className="mx-auto overflow-hidden">
         <div className="flex justify-center">
             <ParticlesDemo />
             <Navbar />

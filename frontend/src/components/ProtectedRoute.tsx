@@ -10,10 +10,13 @@ const ProtectedRoute = () => {
         axios.post(endpoint, {}, {
             withCredentials: true
         }).then((_res) => setisLoggedIn(true))
-        .catch(() => setisLoggedIn(false))
+        .catch((error) => {
+            console.error("Error fetching user data:", error);
+            setisLoggedIn(false);
+        })
     },[])
 
-    if (isLoggedIn === null) return <h2 className="text-white items-center flex h-full justify-center">Loading...</h2>; // Jab tak verify ho raha hai
+    if (isLoggedIn === null) return <h2 className="text-white items-center flex h-screen justify-center">Loading...</h2>; // Jab tak verify ho raha hai
 
     return isLoggedIn ? <Outlet /> : <Navigate to="/login" />;
 };

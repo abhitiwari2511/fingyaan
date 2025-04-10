@@ -69,7 +69,7 @@ const registerUser = asyncHandler(async (req, res) => {
     })
 
     if (existedUser) {
-        res.status(409).json({ message: "User already exists" });
+        return res.status(409).json({ message: "User already exists" });
     }
 
     const hashedPassword = await hashedPass(password);
@@ -93,14 +93,26 @@ const registerUser = asyncHandler(async (req, res) => {
         }
     });
 
+    const {accessToken, refreshToken} = await generateAccessAndRefreshToken(user);
     if (!createdUser) {
         // throw new Error("User creation failed");
-        res.status(500).json({ message: "User creation failed while registering" });
+        return res.status(500).json({ message: "User creation failed while registering" });
     }
 
-    return res.status(201).json({
-        createdUser
-    })
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+
+    return res.status(201)
+    .cookie("accessToken", accessToken, options)
+    .cookie("refreshToken", refreshToken, options)
+    .json({
+        user: createdUser, 
+        accessToken, 
+        refreshToken,
+        message: "User registered Successfully"
+    });
 })
 
 const loginUser = asyncHandler(async (req, res) => {
