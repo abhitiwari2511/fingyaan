@@ -1,5 +1,5 @@
 "use client";
-import { HomeIcon, PencilIcon } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import React from "react";
 import { buttonVariants } from "@/components/ui/button";
