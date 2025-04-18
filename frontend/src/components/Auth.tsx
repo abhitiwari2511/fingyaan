@@ -30,7 +30,7 @@ const Auth = ({ mode }: AuthProps) => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const endpoint = isSignup ? `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/signup` : `${import.meta.env.VITE_BACKEND_URL}/users/login`;
+      const endpoint = isSignup ? `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/signup` : `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/login`;
       await axios.post(endpoint, {
         email,
         password,
