@@ -36,7 +36,10 @@ const Auth = ({ mode }: AuthProps) => {
         password,
         ...(isSignup ? { fullName } : {})
       }, {
-        withCredentials: true
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
       
       // Redirect user after successful authentication

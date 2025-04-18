@@ -101,7 +101,9 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const options = {
         httpOnly: true,
-        secure: true
+        secure: true,
+        sameSite: 'none' as const,
+        path: '/'
     }
 
     return res.status(201)
@@ -177,7 +179,9 @@ const loginUser = asyncHandler(async (req, res) => {
     // for cookies with these only server can modify
     const options = {
         httpOnly: true,
-        secure: true
+        secure: true,
+        sameSite: 'none' as const,
+        path: '/'
     }
 
     return res.status(200)

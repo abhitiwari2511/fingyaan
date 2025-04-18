@@ -8,7 +8,10 @@ const ProtectedRoute = () => {
     useEffect(() => {
         const endpoint = `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/me`;
         axios.post(endpoint, {}, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json',
+            }
         }).then((_res) => setisLoggedIn(true))
         .catch((error) => {
             console.error("Error fetching user data:", error);
