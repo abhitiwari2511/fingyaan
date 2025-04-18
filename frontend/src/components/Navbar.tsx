@@ -42,7 +42,7 @@ export default function Navbar() {
         logout: {
           name: "Logout",
           onclick: async () => {
-            const endPoint = `${import.meta.env.VITE_BACKEND_URL}/users/logout`;
+            const endPoint = `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/logout`;
             try {
               await axios.post(endPoint, {}, { withCredentials: true });
               window.location.href = "/login";

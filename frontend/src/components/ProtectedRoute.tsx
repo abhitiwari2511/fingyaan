@@ -6,7 +6,7 @@ const ProtectedRoute = () => {
     const [isLoggedIn, setisLoggedIn] = useState<Boolean | null>(null);
 
     useEffect(() => {
-        const endpoint = `${import.meta.env.VITE_BACKEND_URL}/users/me`;
+        const endpoint = `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/me`;
         axios.post(endpoint, {}, {
             withCredentials: true
         }).then((_res) => setisLoggedIn(true))
