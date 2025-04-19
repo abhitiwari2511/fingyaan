@@ -8,7 +8,7 @@ dotenv.config();
 app.use(
   cors({
     origin: function(origin, callback) {
-      const allowedOrigins = [process.env.CLIENT_URL || '', 'http://localhost:3000', 'http://localhost:5173'];
+      const allowedOrigins = process.env.CLIENT_URL || 'http://localhost:3000';
       if (!origin || allowedOrigins.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
