@@ -53,7 +53,7 @@ const Auth = ({ mode }: AuthProps) => {
         ? `${backendUrl}/api/v1/users/signup`
         : `${backendUrl}/api/v1/users/login`;
 
-      const response = await axios.post(
+      await axios.post(
         endpoint,
         {
           email,
