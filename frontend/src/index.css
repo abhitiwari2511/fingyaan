@@ -189,6 +189,28 @@ body {
   max-width: 100vw;
 }
 
+/* Hide scrollbars but allow scrolling */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* Main content area scrollbar hiding */
+.main-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.main-content::-webkit-scrollbar {
+  display: none;
+}
+
 /* Line clamp utility for text truncation */
 .line-clamp-2 {
   display: -webkit-box;

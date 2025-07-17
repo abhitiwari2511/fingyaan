@@ -45,32 +45,32 @@ export function FeatCard({
   };
 
   return (
-    <Card className="bg-transparent relative w-full h-auto flex flex-col border-zinc-800 min-h-[400px] sm:min-h-[450px] lg:min-h-[500px]">
+    <Card className="bg-transparent relative w-full h-auto flex flex-col border-zinc-800 min-h-[280px] max-w-xs mx-auto hover:scale-105 transition-transform duration-200">
       {imgUrl && (
-        <CardHeader className="flex-shrink-0">
+        <CardHeader className="flex-shrink-0 p-2">
           <Lens zoomFactor={2} lensSize={100} ariaLabel="Image zoom lens">
             <img
               src={imgUrl}
               alt="image placeholder"
-              className="w-full h-32 sm:h-40 lg:h-48 rounded-lg object-cover"
+              className="w-full h-20 sm:h-24 rounded-lg object-cover"
             />
           </Lens>
         </CardHeader>
       )}
-      <CardContent className="flex-grow p-4 sm:p-6">
-        <CardTitle className="text-lg sm:text-xl lg:text-2xl text-white mb-2">
+      <CardContent className={`flex-grow p-2 sm:p-3 ${!imgUrl ? "pt-4" : ""}`}>
+        <CardTitle className="text-sm sm:text-base text-white mb-1.5 leading-tight">
           {title}
         </CardTitle>
-        <CardDescription className="text-xs sm:text-sm lg:text-base">
+        <CardDescription className="text-xs text-zinc-400 line-clamp-3 leading-relaxed">
           {description}
         </CardDescription>
       </CardContent>
       {btnValue && (
-        <CardFooter className="flex-shrink-0 p-4 sm:p-6">
+        <CardFooter className="flex-shrink-0 p-2 sm:p-3 pt-0">
           <Link to={btnLink} className="w-full">
             <Button
               onClick={handleClick}
-              className="cursor-pointer w-full text-xs sm:text-sm"
+              className="cursor-pointer w-full text-xs h-7 hover:scale-105 transition-transform duration-200"
               variant="secondary"
             >
               {btnValue}

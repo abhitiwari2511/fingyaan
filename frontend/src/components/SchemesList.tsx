@@ -94,7 +94,7 @@ export function SchemesList({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative flex h-[400px] sm:h-[450px] lg:h-[500px] w-full max-w-4xl mx-auto flex-col overflow-hidden gap-3 sm:gap-4 p-3 sm:p-4",
+        "relative flex h-[400px] sm:h-[450px] w-full max-w-4xl mx-auto flex-col overflow-hidden gap-3 sm:gap-4 p-3 sm:p-4 hide-scrollbar",
         className
       )}
     >

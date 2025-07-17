@@ -3,7 +3,7 @@ import { ExpenseListProps } from "../types";
 
 export function ExpenseList({ expenses }: ExpenseListProps) {
   return (
-    <div className="text-white rounded-lg shadow-md w-full max-w-md mx-auto h-auto min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] flex flex-col p-4 sm:p-6 border border-zinc-800">
+    <div className="text-white rounded-lg shadow-md w-[20rem] lg:w-[30rem] max-w-md mx-auto h-auto min-h-[400px] sm:min-h-[450px] lg:min-h-[4rem] flex flex-col p-4 sm:p-6 border border-zinc-800">
       <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
         Recent Expenses
       </h2>

@@ -75,11 +75,11 @@ export default function Navbar() {
   };
 
   return (
-    <div className="flex z-10 absolute flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8">
+    <div className="flex z-10 absolute flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8 overflow-hidden">
       <TooltipProvider>
         <Dock
           direction="middle"
-          className="border-zinc-800 max-w-full overflow-x-auto"
+          className="border-zinc-800 max-w-full overflow-hidden"
         >
           {DATA.navbar.map((item) => (
             <DockIcon key={item.label}>

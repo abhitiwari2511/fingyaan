@@ -18,7 +18,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "./ui/input";
-import { useState } from "react";
 import { ExpenseFormProps } from "@/types";
 import {
   Select,
@@ -29,16 +28,12 @@ import {
 } from "@/components/ui/select";
 
 const formSchema = z.object({
-  amount: z.number().min(0),
-  category: z.string().min(1),
+  amount: z.coerce.number().min(0.01, "Amount must be greater than 0"),
+  category: z.string().min(1, "Please select a category"),
   description: z.string().optional(),
 });
 
 const ExpenseForm = ({ onAddExpense }: ExpenseFormProps) => {
-  const [amount, setAmount] = useState<number>(0);
-  const [category, setCategory] = useState<string>("Food");
-  const [description, setDescription] = useState<string>("");
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,23 +43,21 @@ const ExpenseForm = ({ onAddExpense }: ExpenseFormProps) => {
     },
   });
 
-  function onSubmit(_values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof formSchema>) {
     const expense = {
       id: Date.now().toString(),
-      amount: amount,
-      category,
+      amount: values.amount,
+      category: values.category,
       date: new Date().toISOString(),
-      description,
+      description: values.description || "",
     };
     console.log(expense);
     onAddExpense(expense);
-    setAmount(0);
-    setDescription("");
-    form.reset({ amount: 0, category: "Food", description: "" });
+    form.reset();
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto h-auto min-h-[400px] sm:min-h-[450px] lg:min-h-[500px]">
+    <Card className="relative mx-auto w-[18rem] min-h-[4rem] sm:min-h-[450px] lg:w-[22rem] lg:min-h-[4rem]">
       <CardHeader>
         <CardTitle className="text-lg sm:text-xl">Add Your Expense</CardTitle>
         <CardDescription className="text-sm sm:text-base">
@@ -92,8 +85,7 @@ const ExpenseForm = ({ onAddExpense }: ExpenseFormProps) => {
                         placeholder="Enter amount"
                         className="text-sm sm:text-base"
                         {...field}
-                        value={amount}
-                        onChange={(e) => setAmount(Number(e.target.value))}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
                       />
                     </FormControl>
                     <FormMessage />
@@ -104,15 +96,15 @@ const ExpenseForm = ({ onAddExpense }: ExpenseFormProps) => {
               <FormField
                 control={form.control}
                 name="category"
-                render={() => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-sm sm:text-base">
                       Category
                     </FormLabel>
                     <FormControl>
                       <Select
-                        onValueChange={(value) => setCategory(value)}
-                        defaultValue="Food"
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
                       >
                         <SelectTrigger
                           id="category"
@@ -152,8 +144,6 @@ const ExpenseForm = ({ onAddExpense }: ExpenseFormProps) => {
                         placeholder="Enter description"
                         className="text-sm sm:text-base"
                         {...field}
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
                       />
                     </FormControl>
                     <FormMessage />
@@ -162,7 +152,7 @@ const ExpenseForm = ({ onAddExpense }: ExpenseFormProps) => {
               />
             </div>
 
-            <Button type="submit" className="w-full text-sm sm:text-base">
+            <Button type="submit" className="w-full mt-2 text-sm sm:text-base">
               Submit Expense
             </Button>
           </form>

@@ -43,12 +43,12 @@ const Learn = () => {
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full max-w-6xl mx-auto">
       <div className="mb-8 sm:mb-12">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-6 sm:mb-8 p-3 sm:p-5 text-white">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-6 sm:mb-8 text-white">
           Online Courses
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 justify-items-center">
           {courses.map(({ title, description, link, btnText }, index) => {
             return (
               <FeatCard
@@ -65,10 +65,10 @@ const Learn = () => {
       </div>
 
       <div className="mb-8 sm:mb-12">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-6 sm:mb-8 p-3 sm:p-5 text-white">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-6 sm:mb-8 text-white">
           Videos
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 justify-items-center">
           {videos.map(({ title, description, link, btnText }, index) => {
             return (
               <FeatCard

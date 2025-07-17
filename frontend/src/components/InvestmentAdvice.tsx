@@ -39,13 +39,13 @@ const InvestmentAdvice = () => {
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full max-w-6xl mx-auto">
       <div className="mb-8 sm:mb-12">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl flex flex-col sm:flex-row items-center justify-center font-bold text-center mb-6 sm:mb-8 p-3 sm:p-5 text-white">
-          <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 mb-2 sm:mb-0 sm:mr-4 text-blue-600" />
-          <span className="text-center">Investment Strategy Guide</span>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 text-white flex items-center justify-center gap-3">
+          <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
+          Investment Strategy Guide
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 justify-items-center">
           {investmentStrategies.map(({ title, description }, index) => {
             return (
               <FeatCard
@@ -61,11 +61,11 @@ const InvestmentAdvice = () => {
       </div>
 
       <div className="mb-8 sm:mb-12">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl flex flex-col sm:flex-row items-center justify-center font-bold text-center mb-6 sm:mb-8 p-3 sm:p-5 text-white">
-          <AlertTriangle className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 mb-2 sm:mb-0 sm:mr-4 text-red-500" />
-          <span className="text-center">Warnings</span>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 text-white flex items-center justify-center gap-3">
+          <AlertTriangle className="w-6 h-6 sm:w-8 sm:h-8 text-red-500" />
+          Warnings
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 justify-items-center">
           {warnings.map(({ title, description }, index) => {
             return (
               <FeatCard

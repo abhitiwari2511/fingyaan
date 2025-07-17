@@ -42,14 +42,14 @@ const Dashboard = () => {
     },
   ];
   return (
-    <div className="min-h-screen w-full bg-zinc-950 overflow-x-hidden">
+    <div className="min-h-screen w-full bg-zinc-950 hide-scrollbar">
       <div className="flex justify-center">
         <ParticlesDemo />
         <Navbar />
       </div>
-      <div className="pt-20 sm:pt-24 lg:pt-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+      <div className="pt-20 sm:pt-24 lg:pt-28 px-4 sm:px-6 lg:px-8 pb-8 main-content">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 justify-items-center">
             {cardData.map(
               ({ title, description, imgUrl, btnValue, btnLink }, index) => {
                 return (

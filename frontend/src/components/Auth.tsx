@@ -28,16 +28,32 @@ const Auth = ({ mode }: AuthProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const isSignup = mode === "signup";
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError("");
+    console.log("Login form submitted"); // Debug log
+
+    // Basic validation
+    if (!email || !password || (isSignup && !fullName)) {
+      setError("Please fill in all required fields");
+      setIsLoading(false);
+      return;
+    }
+
     try {
+      const backendUrl =
+        import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
       const endpoint = isSignup
-        ? `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/signup`
-        : `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/login`;
-      await axios.post(
+        ? `${backendUrl}/api/v1/users/signup`
+        : `${backendUrl}/api/v1/users/login`;
+
+      const response = await axios.post(
         endpoint,
         {
           email,
@@ -53,9 +69,22 @@ const Auth = ({ mode }: AuthProps) => {
       );
 
       // Redirect user after successful authentication
-      navigate(isSignup ? "/dashboard" : "/dashboard");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Authentication error:", error);
+      // Add user-friendly error handling
+      if (axios.isAxiosError(error)) {
+        console.error("Response data:", error.response?.data);
+        console.error("Response status:", error.response?.status);
+        setError(
+          error.response?.data?.message ||
+            "Authentication failed. Please try again."
+        );
+      } else {
+        setError("An unexpected error occurred. Please check your connection.");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -72,8 +101,13 @@ const Auth = ({ mode }: AuthProps) => {
               : "Enter your credentials to access your account."}
           </CardDescription>
         </CardHeader>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate className="touch-manipulation">
           <CardContent className="space-y-4 px-6">
+            {error && (
+              <div className="text-red-400 text-sm text-center bg-red-950/20 border border-red-900/30 rounded-md p-2">
+                {error}
+              </div>
+            )}
             {/* only for signup */}
             {isSignup && (
               <div className="space-y-1.5">
@@ -87,6 +121,7 @@ const Auth = ({ mode }: AuthProps) => {
                   placeholder="Enter your full name"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
+                  disabled={isLoading}
                   required
                 />
               </div>
@@ -103,6 +138,7 @@ const Auth = ({ mode }: AuthProps) => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={isLoading}
                 required
               />
             </div>
@@ -118,6 +154,7 @@ const Auth = ({ mode }: AuthProps) => {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={isLoading}
                 required
               />
             </div>
@@ -127,16 +164,20 @@ const Auth = ({ mode }: AuthProps) => {
               type="button"
               variant="outline"
               onClick={() => navigate(isSignup ? "/login" : "/signup")}
-              className="flex-1 bg-transparent border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 hover:text-white cursor-pointer h-10 transition-colors"
+              disabled={isLoading}
+              className="flex-1 bg-transparent border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 hover:text-white cursor-pointer h-10 transition-colors active:bg-zinc-700 touch-manipulation disabled:opacity-50"
             >
               {isSignup ? "Login" : "Register"}
             </Button>
             <Button
               type="submit"
               variant="outline"
-              className="flex-1 bg-transparent border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 hover:text-white cursor-pointer h-10 transition-colors"
+              disabled={isLoading}
+              className="flex-1 bg-transparent border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 hover:text-white cursor-pointer h-10 transition-colors active:bg-zinc-700 touch-manipulation disabled:opacity-50"
+              onTouchStart={() => console.log("Touch start on login button")}
+              onClick={() => console.log("Click event on login button")}
             >
-              {isSignup ? "SignUp" : "Login"}
+              {isLoading ? "Loading..." : isSignup ? "SignUp" : "Login"}
             </Button>
           </CardFooter>
         </form>
