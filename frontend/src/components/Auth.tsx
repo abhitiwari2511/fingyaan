@@ -16,7 +16,11 @@ import axios from "axios";
 
 interface AuthProps {
   mode: "login" | "signup";
-  onSubmit?: (data: { email: string; password: string; fullName?: string }) => void;
+  onSubmit?: (data: {
+    email: string;
+    password: string;
+    fullName?: string;
+  }) => void;
 }
 
 const Auth = ({ mode }: AuthProps) => {
@@ -24,24 +28,30 @@ const Auth = ({ mode }: AuthProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
-  
+
   const isSignup = mode === "signup";
-  
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const endpoint = isSignup ? `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/signup` : `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/login`;
-      await axios.post(endpoint, {
-        email,
-        password,
-        ...(isSignup ? { fullName } : {})
-      }, {
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'application/json',
+      const endpoint = isSignup
+        ? `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/signup`
+        : `${import.meta.env.VITE_BACKEND_URL}/api/v1/users/login`;
+      await axios.post(
+        endpoint,
+        {
+          email,
+          password,
+          ...(isSignup ? { fullName } : {}),
+        },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
-      
+      );
+
       // Redirect user after successful authentication
       navigate(isSignup ? "/dashboard" : "/dashboard");
     } catch (error) {
@@ -50,26 +60,30 @@ const Auth = ({ mode }: AuthProps) => {
   };
 
   return (
-    <Card className="absolute w-[24vw] border-zinc-800 bg-zinc-950 text-white overflow-hidden">
-      <CardHeader>
-        <CardTitle>{isSignup ? "SignUp" : "Login"}</CardTitle>
-        <CardDescription className="mt-2">
-          {isSignup 
-            ? "Enter your credentials to register your account."
-            : "Enter your credentials to access your account."}
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+    <div className="relative">
+      <Card className="w-full max-w-sm sm:max-w-md border-zinc-800 bg-transparent text-white overflow-hidden lg:w-[24vw] xl:max-w-xl mx-auto">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-xl font-bold text-center">
+            {isSignup ? "SignUp" : "Login"}
+          </CardTitle>
+          <CardDescription className="text-center text-zinc-400 text-sm">
+            {isSignup
+              ? "Enter your credentials to register your account."
+              : "Enter your credentials to access your account."}
+          </CardDescription>
+        </CardHeader>
         <form onSubmit={handleSubmit}>
-          <div className="grid w-full items-center gap-5">
+          <CardContent className="space-y-4 px-6">
             {/* only for signup */}
             {isSignup && (
-              <div className="flex flex-col space-y-3">
-                <Label htmlFor="fullName">Full Name</Label>
-                <Input 
-                  className="border-zinc-800" 
-                  id="fullName" 
-                  type="text" 
+              <div className="space-y-1.5">
+                <Label htmlFor="fullName" className="text-sm font-medium">
+                  Full Name
+                </Label>
+                <Input
+                  className="border-zinc-700 bg-zinc-900 focus:border-zinc-600 h-10"
+                  id="fullName"
+                  type="text"
                   placeholder="Enter your full name"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
@@ -77,24 +91,28 @@ const Auth = ({ mode }: AuthProps) => {
                 />
               </div>
             )}
-            
-            <div className="flex flex-col space-y-3">
-              <Label htmlFor="email">Email</Label>
-              <Input 
-                className="border-zinc-800" 
-                id="email" 
-                type="email" 
+
+            <div className="space-y-1.5">
+              <Label htmlFor="email" className="text-sm font-medium">
+                Email
+              </Label>
+              <Input
+                className="border-zinc-700 bg-zinc-900 focus:border-zinc-600 h-10"
+                id="email"
+                type="email"
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
-            
-            <div className="flex flex-col space-y-3">
-              <Label htmlFor="password">Password</Label>
-              <Input 
-                className="border-zinc-800"
+
+            <div className="space-y-1.5">
+              <Label htmlFor="password" className="text-sm font-medium">
+                Password
+              </Label>
+              <Input
+                className="border-zinc-700 bg-zinc-900 focus:border-zinc-600 h-10"
                 id="password"
                 type="password"
                 placeholder="Enter your password"
@@ -103,29 +121,29 @@ const Auth = ({ mode }: AuthProps) => {
                 required
               />
             </div>
-          </div>
+          </CardContent>
+          <CardFooter className="flex flex-row justify-between gap-3 pt-8 px-6">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => navigate(isSignup ? "/login" : "/signup")}
+              className="flex-1 bg-transparent border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 hover:text-white cursor-pointer h-10 transition-colors"
+            >
+              {isSignup ? "Login" : "Register"}
+            </Button>
+            <Button
+              type="submit"
+              variant="outline"
+              className="flex-1 bg-transparent border-zinc-700 hover:bg-zinc-800 hover:border-zinc-600 hover:text-white cursor-pointer h-10 transition-colors"
+            >
+              {isSignup ? "SignUp" : "Login"}
+            </Button>
+          </CardFooter>
         </form>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button 
-          variant="outline" 
-          onClick={() => navigate(isSignup ? "/login" : "/signup")} 
-          className="bg-transparent border-zinc-800 cursor-pointer"
-        >
-          {isSignup ? "Login" : "Register"}
-        </Button>
-        <Button 
-          variant="outline" 
-          className="bg-transparent cursor-pointer border-zinc-800"
-          onClick={handleSubmit}
-          type="submit"
-        >
-          {isSignup ? "SignUp" : "Login"}
-        </Button>
-      </CardFooter>
-      <BorderBeam duration={8} size={150} />
-    </Card>
+        <BorderBeam duration={8} size={150} className="absolute inset-0" />
+      </Card>
+    </div>
   );
-}
+};
 
 export default Auth;

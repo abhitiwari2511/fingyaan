@@ -11,7 +11,7 @@ import Tracker from "./pages/Tracker";
 
 const App = () => {
   return (
-    <div className="mx-auto flex justify-center w-full h-full bg-zinc-950">
+    <div className="min-h-screen w-full bg-zinc-950 overflow-x-hidden">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

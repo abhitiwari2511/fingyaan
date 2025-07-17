@@ -3,11 +3,13 @@ import ParticlesDemo from "@/components/ParticleEffect";
 
 const SignUp = () => {
   return (
-    <div className="bg-zinc-950 z-10 w-screen h-screen flex justify-center items-center">
+    <div className="relative bg-zinc-950 min-h-screen w-full flex justify-center items-center px-4 sm:px-6 lg:px-8">
       <ParticlesDemo />
-      <Auth mode="signup"/>
+      <div className="relative z-20">
+        <Auth mode="signup" />
+      </div>
     </div>
   );
-}
+};
 
-export default SignUp
+export default SignUp;

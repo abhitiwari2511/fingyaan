@@ -1,19 +1,19 @@
-import Learn from '@/components/Learn'
-import Navbar from '@/components/Navbar'
-import ParticlesDemo from '@/components/ParticleEffect'
+import Learn from "@/components/Learn";
+import Navbar from "@/components/Navbar";
+import ParticlesDemo from "@/components/ParticleEffect";
 
 const Learning = () => {
   return (
-    <div className="mx-auto overflow-hidden">
-        <div className="flex justify-center">
-            <ParticlesDemo />
-            <Navbar />
-        </div>
-        <div className="mt-32">
-            <Learn />
-        </div>
+    <div className="min-h-screen w-full bg-zinc-950 overflow-x-hidden">
+      <div className="flex justify-center">
+        <ParticlesDemo />
+        <Navbar />
+      </div>
+      <div className="pt-20 sm:pt-24 lg:pt-28 px-4 sm:px-6 lg:px-8">
+        <Learn />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Learning
+export default Learning;

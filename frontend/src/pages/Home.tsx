@@ -3,9 +3,8 @@ import Particles from "react-tsparticles";
 import { useCallback } from "react";
 import { loadSlim } from "tsparticles-slim";
 import type { Engine } from "tsparticles-engine";
-import { buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
 
 const Home = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -13,7 +12,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-screen bg-zinc-950 h-screen flex-col absolute mx-auto flex justify-center items-center">
+    <div className="min-h-screen w-full bg-zinc-950 flex-col relative flex justify-center items-center px-4 sm:px-6 lg:px-8">
       <Particles
         id="tsparticles"
         init={particlesInit}
@@ -72,22 +71,43 @@ const Home = () => {
           zIndex: -1,
         }}
       />
-      <div className="flex flex-col justify-center items-center">
-
-      <div className="text-white flex justify-center flex-col items-center font-bold gap-y-2 z-10">
-        <TextAnimate animation="blurInUp" className="text-7xl text-cyan-500" by="character" duration={1} once>
-          Welcome to
-        </TextAnimate>
-        <TextAnimate animation="blurInUp" className="text-7xl text-cyan-500" by="character" duration={1.5} once>
-          FinGyaan
-        </TextAnimate>
-        <TextAnimate animation="blurInUp" className="text-4xl mt-7 text-cyan-500" duration={1.5} once>
-          Your one way solution for all your financial needs.
-        </TextAnimate>
-      </div>
-      <div className="mt-12">
-      <Link to={"/login"} className={buttonVariants({ variant: "outline" })}>Get Started</Link>
-      </div>
+      <div className="flex flex-col justify-center items-center max-w-4xl mx-auto text-center">
+        <div className="text-white flex justify-center flex-col items-center font-bold gap-y-2 z-10">
+          <TextAnimate
+            animation="blurInUp"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-cyan-500"
+            by="character"
+            duration={1}
+            once
+          >
+            Welcome to
+          </TextAnimate>
+          <TextAnimate
+            animation="blurInUp"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-cyan-500"
+            by="character"
+            duration={1.5}
+            once
+          >
+            FinGyaan
+          </TextAnimate>
+          <TextAnimate
+            animation="blurInUp"
+            className="text-lg sm:text-2xl md:text-3xl lg:text-4xl mt-4 lg:mt-7 text-cyan-500 px-4"
+            duration={1.5}
+            once
+          >
+            Your one way solution for all your financial needs.
+          </TextAnimate>
+        </div>
+        <div className="mt-8 sm:mt-10 lg:mt-12">
+          <Link
+            to={"/login"}
+            className={buttonVariants({ variant: "outline" })}
+          >
+            Get Started
+          </Link>
+        </div>
       </div>
     </div>
   );
