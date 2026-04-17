@@ -65,7 +65,7 @@ const Auth = ({ mode }: AuthProps) => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       // Redirect user after successful authentication
@@ -78,7 +78,7 @@ const Auth = ({ mode }: AuthProps) => {
         console.error("Response status:", error.response?.status);
         setError(
           error.response?.data?.message ||
-            "Authentication failed. Please try again."
+            "Authentication failed. Please try again.",
         );
       } else {
         setError("An unexpected error occurred. Please check your connection.");
@@ -105,7 +105,7 @@ const Auth = ({ mode }: AuthProps) => {
           <CardContent className="space-y-4 px-6">
             {error && (
               <div className="text-red-400 text-sm text-center bg-red-950/20 border border-red-900/30 rounded-md p-2">
-                {error}
+                <h1>Please Try Again</h1>
               </div>
             )}
             {/* only for signup */}
